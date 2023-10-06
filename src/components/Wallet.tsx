@@ -1,15 +1,9 @@
 'use client'
-import { Button, Flex, Heading, Separator, Text, TextField } from '@radix-ui/themes'
+import { Button, Flex, Separator, Text, TextField } from '@radix-ui/themes'
 import { useState } from 'react'
-import { connect } from 'get-starknet'
-import { Contract, Provider, constants as starknetConstants, shortString } from 'starknet'
+import { connect } from '@argent/get-starknet'
+import { Contract, constants as starknetConstants, shortString } from 'starknet'
 import { name_registry_abi } from '../abis/name_registry'
-
-// const provider = new Provider({
-//   sequencer: {
-//     network: starknetConstants.NetworkName.SN_GOERLI,
-//   },
-// })
 
 const NAME_REGISTRY_CONTRACT_ADDRESS =
   '0x01db2752c569d331c31da48762a292a30444a7c8bd3d6792897506b857f048ef'
