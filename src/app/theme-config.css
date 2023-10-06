@@ -1,3 +1,4 @@
 .radix-themes {
-  --default-font-family: var(--font-amatic-sc);
+  --default-font-family: var(--font-monteserrat), sans-serif;
+  --heading-font-family: var(--font-fjalla-one), sans-serif;
 }
