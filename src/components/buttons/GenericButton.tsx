@@ -7,12 +7,14 @@ type GenericButtonProps = {
   label: string;
   onClick: (e: MouseEvent<HTMLButtonElement>) => void;
   className?: string;
+  disabled?: boolean
 };
 
 export const GenericButton = ({
   label,
   onClick,
   className,
+  disabled
 }: GenericButtonProps) => {
   const [isTapped, setIsTapped] = useState(false);
 
@@ -34,6 +36,7 @@ export const GenericButton = ({
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={onClick}
+      disabled={disabled}
     >
       {label}
     </Button>

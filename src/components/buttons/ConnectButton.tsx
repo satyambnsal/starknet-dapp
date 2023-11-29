@@ -1,13 +1,14 @@
 "use client";
 
 import { useAccount, useConnect, useDisconnect } from "@starknet-react/core";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { GenericButton } from "./GenericButton";
 
 export const ConnectButton = () => {
   const { address } = useAccount();
-  const { connectors, connect } = useConnect();
+  const { connectors, connect, pendingConnector, connectAsync } = useConnect();
   const { disconnect } = useDisconnect();
+  const [isConnectionInProgress, setIsConnectionInProgress] = useState(false);
 
   const shortenedAddress = useMemo(() => {
     if (!address) return "";
@@ -24,7 +25,10 @@ export const ConnectButton = () => {
           <GenericButton
             key={connector.id}
             label={connector.name}
-            onClick={() => connect({ connector })}
+            onClick={() => connectAsync({ connector })}
+            disabled={
+              pendingConnector && pendingConnector.name === connector.name
+            }
           />
         ))}
       </div>

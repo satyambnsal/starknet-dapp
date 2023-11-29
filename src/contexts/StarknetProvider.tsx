@@ -8,9 +8,12 @@ import {
   argent,
   braavos,
   useInjectedConnectors,
+  alchemyProvider,
 } from "@starknet-react/core";
 
-
+const provider = process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY ? alchemyProvider({
+  apiKey: process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY || "",
+}): publicProvider();
 
 export const StarknetProvider = ({
   children,
@@ -26,7 +29,7 @@ export const StarknetProvider = ({
   return (
     <StarknetConfig
       chains={[mainnet, goerli]}
-      provider={publicProvider()}
+      provider={provider}
       connectors={connectors}
     >
       {children}
