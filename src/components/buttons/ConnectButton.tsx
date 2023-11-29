@@ -1,14 +1,18 @@
 "use client";
 
-import { useAccount, useConnect, useDisconnect } from "@starknet-react/core";
-import { useMemo, useState } from "react";
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useNetwork,
+} from "@starknet-react/core";
+import { useMemo } from "react";
 import { GenericButton } from "./GenericButton";
 
 export const ConnectButton = () => {
   const { address } = useAccount();
-  const { connectors, connect, pendingConnector, connectAsync } = useConnect();
+  const { connectors, pendingConnector, connectAsync } = useConnect();
   const { disconnect } = useDisconnect();
-  const [isConnectionInProgress, setIsConnectionInProgress] = useState(false);
 
   const shortenedAddress = useMemo(() => {
     if (!address) return "";
@@ -19,7 +23,6 @@ export const ConnectButton = () => {
     <GenericButton label={shortenedAddress} onClick={() => disconnect()} />
   ) : (
     <div className="flex items-center gap-4">
-      <span>Choose a wallet:</span>
       <div className="flex gap-4">
         {connectors.map((connector) => (
           <GenericButton
