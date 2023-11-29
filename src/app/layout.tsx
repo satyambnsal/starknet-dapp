@@ -1,7 +1,7 @@
 import './globals.css'
 import '@radix-ui/themes/styles.css'
 import './theme-config.css'
-import { Providers } from './providers'
+import { Providers } from '../contexts/providers'
 import { fjallaOne, monteserrat } from '../styles/fonts'
 
 export const metadata = {
