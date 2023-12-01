@@ -1,0 +1,25 @@
+{
+  "projectName": "create-starknet-app",
+  "projectOwner": "satyambnsal",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "gitmoji",
+  "contributors": [
+    {
+      "login": "satyambnsal",
+      "name": "Satyam Bansal",
+      "avatar_url": "https://avatars.githubusercontent.com/satyambnsal",
+      "profile": "https://github.com/satyambnsal",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 4,
+  "linkToUsage": true
+}

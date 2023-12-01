@@ -1,8 +1,30 @@
-# Starknet DApp Starter 
+<div align="center">
+  <h1>Create Starknet App</h1>
+  <img src="docs/images/logo.jpeg" height="600" width="600">
+  <br />
+  <a href="https://github.com/satyambnsal/starknet-dapp/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
+  -
+  <a href="https://github.com/satyambnsal/starknet-dapp/issues/new?assignees=&labels=enhancement&template=02_FEATURE_REQUEST.md&title=feat%3A+">Request a Feature</a>
+  -
+  <a href="https://github.com/satyambnsal/starknet-dapp/discussions">Ask a Question</a>
+</div>
+
+
+[![Project license](https://img.shields.io/github/license/satyambnsal/starknet-dapp.svg?style=flat-square)](LICENSE)
+[![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/satyambnsal/starknet-dapp/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies
+```bash
+npm install
+# or
+yarn
+```
+
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -19,7 +41,13 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 
+## Contributors ✨
 
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 
-https://starkscan.co/nft/0x07606cac9053e9b8b573a4b0a0ce608880f64869e24b8a605210d7a85bb6e5f1/2807144
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
 
+<!-- ALL-CONTRIBUTORS-LIST:END -->
