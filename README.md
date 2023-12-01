@@ -1,4 +1,4 @@
-# WeWereHere API Frontend
+# Starknet DApp Starter 
 
 ## Getting Started
 
