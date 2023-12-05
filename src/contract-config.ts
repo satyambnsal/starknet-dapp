@@ -10,6 +10,10 @@ export const CONTRACT_DETAILS = {
       classhash:
         "0x347fae06aed5284dab3afc8dc718f50d5a96e168f36818b7384493948420695",
     },
+    StarkVoice: {
+      classhash:
+        "0x7e27922b1df65a26e31df8d2b81346a9dae8f25b6e3f4b3b09bc48ebd8949fa",
+    },
   },
   mainnet: {},
   devnet: {},
