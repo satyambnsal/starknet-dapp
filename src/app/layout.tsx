@@ -4,6 +4,7 @@ import "./theme-config.css";
 import { Providers } from "../contexts/providers";
 import { fjallaOne, monteserrat } from "../styles/fonts";
 import { Header } from "@/components/Header";
+import { Theme } from "@radix-ui/themes";
 
 export const metadata = {
   title: "StarkVoice",
@@ -23,7 +24,20 @@ export default function RootLayout({
       className={`${monteserrat.variable}, ${fjallaOne.variable}`}
     >
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Theme
+            accentColor="amber"
+            grayColor="olive"
+            panelBackground="solid"
+            scaling="100%"
+            radius="large"
+          >
+            <div className="h-screen w-full">
+              <Header />
+              {children}
+            </div>
+          </Theme>
+        </Providers>
       </body>
     </html>
   );

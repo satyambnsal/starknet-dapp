@@ -11,17 +11,8 @@ import { Hero } from "@/components/Hero";
  */
 export default function Home() {
   return (
-    <Theme
-      accentColor="amber"
-      grayColor="olive"
-      panelBackground="solid"
-      scaling="100%"
-      radius="large"
-    >
-      <div>
-        <Header />
-        <Hero />
-      </div>
-    </Theme>
+    <div>
+      <Hero />
+    </div>
   );
 }

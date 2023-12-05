@@ -20,6 +20,7 @@
     "@radix-ui/themes": "^2.0.0-rc.3",
     "@starknet-react/chains": "^0.1.0",
     "@starknet-react/core": "^2.1.0",
+    "@supabase/supabase-js": "^2.39.0",
     "@types/node": "20.6.5",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",

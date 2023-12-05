@@ -1,11 +1,13 @@
 // import Image from "next/image";
 
-import { Button, Heading, Text } from "@radix-ui/themes";
+import { Button, Heading, Link, Text } from "@radix-ui/themes";
 import { MyContainer } from "@/components/MyContainer";
+import { useRouter } from "next/navigation";
 
 // import backgroundImage from "@/images/background.jpg";
 
 export function Hero() {
+  const router = useRouter();
   return (
     <div className="relative pb-20 pt-10 sm:py-24">
       {/* <div className="bg-indigo-50 absolute inset-x-0 -bottom-14 -top-48 overflow-hidden">
@@ -39,29 +41,11 @@ export function Hero() {
               proposals. This platform will primarily be available to Starknet
             </Text>
 
-            <Button href="#" className="mt-10 w-full sm:hidden">
-              Join us!
-            </Button>
-            {/* <dl className="mt-10 grid grid-cols-2 gap-y-6 gap-x-10 sm:mt-16 sm:gap-y-10 sm:gap-x-16 sm:text-center lg:auto-cols-auto lg:grid-flow-col lg:grid-cols-none lg:justify-start lg:text-left">
-            {[
-              ['Speakers', '18'],
-              ['People Attending', '2,091'],
-              ['Venue', 'Staples Center'],
-              ['Location', 'Los Angeles'],
-            ].map(([name, value]) => (
-              <div key={name}>
-                <dt className="font-mono text-sm text-blue-600">{name}</dt>
-                <dd className="mt-0.5 text-2xl font-semibold tracking-tight text-blue-900">
-                  {value}
-                </dd>
-              </div>
-            ))}
-          </dl> */}
-          </div>
-
-          <div className="mt-20 hidden w-full justify-center sm:flex lg:grow lg:basis-0 ">
-            <Button href="#" className="px-10">
-              Send your postcard!
+            <Button
+              onClick={() => router.push("/dashboard")}
+              className="mt-10 block w-full"
+            >
+              Start Now!
             </Button>
           </div>
         </div>

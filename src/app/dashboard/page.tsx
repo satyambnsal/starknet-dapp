@@ -1,15 +1,40 @@
 "use client";
 import { Alert } from "@/components/common/Alert";
 import { AwesomeModal } from "@/components/common/Modal";
-import { Header } from "@/components/Header";
 import { Flex, Text, Button, TextField, Dialog } from "@radix-ui/themes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabaseClient } from "@/utils/supabase-client";
+import { getCommunities } from "@/utils/supabase-client";
+import { Community } from "@/types";
+import { GetStaticPropsResult } from "next/types";
+import { cache } from "react";
+import { toast } from "sonner";
 
 export default function Dashboard() {
+  const [communities, setCommunities] = useState<Community[]>([]);
+  useEffect(() => {
+    getCommunities()
+      .then((data) => {
+        setCommunities(data);
+      })
+      .catch((err) => {
+        toast(err);
+      });
+  }, []);
   const [showModal, setShowModal] = useState(false);
+  console.log("communities: ", communities);
+
+  const createCommunity = async () => {
+    const { error } = await supabaseClient.from("communities").insert({
+      community_id: 1,
+      title: "Starknet Foundation",
+      description: "hello world",
+      owner_address: "0x1",
+    });
+    console.log("error", error);
+  };
   return (
-    <div>
-      <Header />
+    <div className="h-screen">
       <Flex
         direction="column"
         gap="2"
@@ -17,7 +42,7 @@ export default function Dashboard() {
         align="center"
         className="mt-24"
       >
-        <Text size="5">
+        {/* <Text size="5">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industrys standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -38,8 +63,8 @@ export default function Dashboard() {
           >
             Show modal
           </Button>
-        </div>
-        <AwesomeModal
+        </div> */}
+        {/* <AwesomeModal
           isOpen={showModal}
           onToggle={() => {
             setShowModal(!showModal);
@@ -67,8 +92,21 @@ export default function Dashboard() {
             </label>
           </Flex>
           <Flex gap="3" mt="4" justify="end"></Flex>
-        </AwesomeModal>
+        </AwesomeModal> */}
       </Flex>
+      <Button onClick={createCommunity}>Create Community</Button>
     </div>
   );
 }
+
+// export async function getStaticProps(): Promise<
+//   GetStaticPropsResult<{ communities: Community[] }>
+// > {
+//   console.log("communities: ", communities);
+//   return {
+//     props: {
+//       communities,
+//     },
+//     revalidate: 60,
+//   };
+// }
