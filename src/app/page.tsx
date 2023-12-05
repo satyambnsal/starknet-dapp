@@ -1,10 +1,8 @@
 "use client";
 
-import { Wallet } from "@/components/Wallet";
 import { Theme } from "@radix-ui/themes";
-import { HomePageContent } from "../components/containers/HomePage";
-import { useTheme } from "next-themes";
 import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
 
 /**
  * The accent is the most dominant color in your theme, it is used for primary buttons, links, and other interactive elements.
@@ -20,10 +18,9 @@ export default function Home() {
       scaling="100%"
       radius="large"
     >
-      
       <div>
         <Header />
-        <HomePageContent />
+        <Hero />
       </div>
     </Theme>
   );

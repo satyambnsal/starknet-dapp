@@ -1,3 +1,4 @@
+"use client";
 import { Box, Badge } from "@radix-ui/themes";
 import { ThemeToggle } from "./common/ThemeToggle";
 import { ConnectButton } from "./buttons/ConnectButton";
