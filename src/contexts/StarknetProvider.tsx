@@ -9,12 +9,15 @@ import {
   braavos,
   useInjectedConnectors,
   alchemyProvider,
+  lavalProvider,
 } from "@starknet-react/core";
 
-const provider = process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY ? alchemyProvider({
-  apiKey: process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY || "",
-}): publicProvider();
+console.log("api key", process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY);
+// const provider = process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY;
 
+// const provider = publicProvider();
+
+// console.log("provider", provider);
 export const StarknetProvider = ({
   children,
 }: {
@@ -29,7 +32,7 @@ export const StarknetProvider = ({
   return (
     <StarknetConfig
       chains={[mainnet, goerli]}
-      provider={provider}
+      provider={lavalProvider({ apiKey: "fbd4ea72f2a3a3f83b874c3f2eeecb09" })}
       connectors={connectors}
     >
       {children}

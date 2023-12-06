@@ -80,8 +80,8 @@ export const CreateCommunity = () => {
         constructorCalldata: constructorData,
       });
 
-      console.log("#### Deploy Response #### ");
-      await provider.waitForTransaction(deployResponse.transaction_hash);
+      console.log("#### Deploy Response #### ", deployResponse);
+      // await provider.waitForTransaction(deployResponse.transaction_hash);
       toast("Proposal deployed successfully");
     } catch (error) {
       console.log(error);
