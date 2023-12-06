@@ -21,6 +21,12 @@ type NewCommunityInput = {
   eligibility_token: string;
 };
 
+type UpdateVoteInput = {
+  proposal_id: number;
+  yes_votes: number;
+  no_votes: number;
+};
+
 export const createNewCommunity = async ({
   title,
   description,
@@ -61,7 +67,24 @@ export const createNewProposalApi = async ({
       no_votes_title,
       details_hash,
       proposal_id,
+      yes_votes: 0,
+      no_votes: 0,
     });
+  return { error, data };
+};
+
+export const updateVoteApi = async ({
+  proposal_id,
+  yes_votes,
+  no_votes,
+}: UpdateVoteInput) => {
+  const { error, data } = await supabaseClient
+    .from("community_proposals")
+    .update({
+      yes_votes,
+      no_votes,
+    })
+    .eq("proposal_id", proposal_id);
   return { error, data };
 };
 

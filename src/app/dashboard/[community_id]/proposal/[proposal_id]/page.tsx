@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { useAccount } from "@starknet-react/core";
 import toast from "react-hot-toast";
 import { CallData, cairo } from "starknet";
+import { updateVoteApi } from "@/utils/helpers";
 
 export default function Proposal() {
   const pathName = usePathname();
@@ -58,7 +59,6 @@ export default function Proposal() {
         }),
       });
       console.log("#### DEPLOY RESPONSE", result);
-      toast("Proposal created successfully");
       if (result?.transaction_hash) {
         //   await createNewProposalApi({
         //     contract_address: contractAddress,
@@ -70,6 +70,18 @@ export default function Proposal() {
         //     no_votes_title: noVoteTitle,
         //   });
         // }
+        let yes_votes = communityProposal.yes_votes!;
+        let no_votes = communityProposal.no_votes!;
+        if (vote === 1) {
+          yes_votes += 1;
+        } else {
+          no_votes += 1;
+        }
+        await updateVoteApi({
+          proposal_id: communityProposal.proposal_id,
+          yes_votes,
+          no_votes,
+        });
         setIsTxPending(false);
         toast("You've Voted successfully! 🔥");
       }
@@ -87,6 +99,11 @@ export default function Proposal() {
           <Text>{communityProposal.details}</Text>
 
           <Heading size="4" color="grass" mt="8">
+            Vote Count
+          </Heading>
+          <Heading>YES: {communityProposal.yes_votes}</Heading>
+          <Heading> NO: {communityProposal.no_votes}</Heading>
+          <Heading size="4" color="grass" mt="4">
             CAST YOUR VOTE
           </Heading>
           <Flex gap="9">
