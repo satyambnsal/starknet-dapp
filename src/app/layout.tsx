@@ -5,6 +5,7 @@ import { Providers } from "../contexts/providers";
 import { fjallaOne, monteserrat } from "../styles/fonts";
 import { Header } from "@/components/Header";
 import { Theme } from "@radix-ui/themes";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "StarkVoice",
@@ -35,6 +36,7 @@ export default function RootLayout({
             <div className="h-screen w-full">
               <Header />
               {children}
+              <Toaster />
             </div>
           </Theme>
         </Providers>

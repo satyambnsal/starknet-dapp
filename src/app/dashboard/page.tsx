@@ -1,18 +1,29 @@
 "use client";
 
-import { Avatar, Card, Container, Flex, Text } from "@radix-ui/themes";
+import {
+  Avatar,
+  Card,
+  Container,
+  Flex,
+  Grid,
+  Heading,
+  Link,
+  Text,
+} from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import { getCommunities } from "@/utils/supabase-client";
 import { Community } from "@/types";
-
-import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 import { CreateCommunity } from "@/components/CreateCommunity";
-import { DividerHorizontalIcon } from "@radix-ui/react-icons";
 import { CardShimmer } from "@/components/common/CardShimmer";
+import { VOYAGER_BASE_ADDRESS } from "@/utils/constants";
 
 export default function Dashboard() {
   const [communities, setCommunities] = useState<Community[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+
   useEffect(() => {
     setIsLoading(true);
     getCommunities()
@@ -31,22 +42,35 @@ export default function Dashboard() {
     (_, index) => index * 10
   ).map((key) => <CardShimmer key={key} />);
   return (
-    <Container className="mx-auto mt-10 flex max-w-md flex-col">
+    <Container className="mx-auto mt-10 flex flex-col">
       <CreateCommunity />
-      <DividerHorizontalIcon />
-      {communities.map(({ community_id, title = "", description }) => (
-        <Card key={community_id}>
-          <Flex direction="column" gap="2">
-            <Avatar fallback={title.charAt(0).toLocaleUpperCase()} />
-            <Text mt="2" size="4">
-              {title}
-            </Text>
-            <Text mt="2" size="3">
-              {description}
-            </Text>
-          </Flex>
-        </Card>
-      ))}
+      <Grid columns="3" gap="3" mt="6">
+        {communities.map(
+          ({ community_id, title = "", description, contract_address }) => (
+            <Card
+              key={community_id}
+              onClick={() => router.push(`/dashboard/${contract_address}`)}
+            >
+              <Flex direction="column" justify="center" align="center" gap="2">
+                <Avatar
+                  fallback={title.charAt(0).toLocaleUpperCase()}
+                  size="6"
+                />
+                <Heading size="7" highContrast>
+                  {title}
+                </Heading>
+                <Text size="3">{description}</Text>
+                <Link
+                  href={`${VOYAGER_BASE_ADDRESS}/contract/${contract_address}`}
+                  target="_blank"
+                >
+                  View on Voyager
+                </Link>
+              </Flex>
+            </Card>
+          )
+        )}
+      </Grid>
       {loadingContent}
     </Container>
   );

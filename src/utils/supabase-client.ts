@@ -20,11 +20,11 @@ export const getCommunities = cache(async (): Promise<Community[]> => {
 });
 
 export const getProposals = cache(
-  async (community_id: number): Promise<CommunityProposal[]> => {
+  async (contract_address: string): Promise<CommunityProposal[]> => {
     const { data, error } = await supabaseClient
       .from("community_proposals")
       .select("*")
-      .eq("community_id", community_id);
+      .eq("contract_address", contract_address);
     if (error || !data) {
       console.log(error.message);
       throw new Error("failed to fetch data");

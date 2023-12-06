@@ -42,8 +42,8 @@ export const LoyaltyToken = () => {
   const { writeAsync, data, isPending } = useContractWrite({ calls });
 
   return (
-    <div>
-      <Heading>Loyalty Token</Heading>
+    <Container className="w-full">
+      <Heading>Stark Voice</Heading>
       <p>Address: {contract?.address}</p>
       <p>
         Balance:{" "}
@@ -71,6 +71,6 @@ export const LoyaltyToken = () => {
           Transfer
         </Button>
       </Container>
-    </div>
+    </Container>
   );
 };

@@ -1,12 +1,14 @@
+import { shortString } from "starknet";
 import { supabaseClient } from "./supabase-client";
 
 type NewProposalInput = {
-  details?: string;
-  details_hash?: string;
-  earliest: string;
-  latest: string;
+  details: string;
+  details_hash: string;
   title: string;
-  community_id: number;
+  contract_address: string;
+  txn_hash: string;
+  yes_votes_title: string;
+  no_votes_title: string;
 };
 
 type NewCommunityInput = {
@@ -26,36 +28,63 @@ export const createNewCommunity = async ({
   txn_hash,
   eligibility_token,
 }: NewCommunityInput) => {
-  const { error, data } = await supabaseClient
-    .from("communities")
-    .insert({
-      title,
-      description,
-      owner_address,
-      contract_address,
-      txn_hash,
-      eligibility_token,
-    });
+  const { error, data } = await supabaseClient.from("communities").insert({
+    title,
+    description,
+    owner_address,
+    contract_address,
+    txn_hash,
+    eligibility_token,
+  });
   return { error, data };
 };
 
-export const createNewProposal = async ({
+export const createNewProposalApi = async ({
   title,
   details,
   details_hash,
-  earliest,
-  latest,
-  community_id,
+  contract_address,
+  txn_hash,
+  yes_votes_title,
+  no_votes_title,
 }: NewProposalInput) => {
   const { error, data } = await supabaseClient
     .from("community_proposals")
     .insert({
       title,
       details,
-      community_id,
+      contract_address,
+      txn_hash,
+      yes_votes_title,
+      no_votes_title,
       details_hash,
-      earliest,
-      latest,
     });
   return { error, data };
+};
+
+export const splitString = (inputString: string) => {
+  const maxLength = 31;
+  const maxParts = 3;
+
+  if (inputString.length <= maxLength * maxParts) {
+    // Split the string into an array of 31-character strings
+    const result = [];
+    for (let i = 0; i < maxParts; i++) {
+      const startIndex = i * maxLength;
+      const endIndex = startIndex + maxLength;
+      const part = inputString.substring(startIndex, endIndex) || "";
+      if (part === "") {
+        result.push(12408);
+      } else {
+        result.push(shortString.encodeShortString(part));
+      }
+    }
+
+    return result;
+  } else {
+    console.error(
+      "Input string is too long. Max length should be 93 characters."
+    );
+    return [];
+  }
 };

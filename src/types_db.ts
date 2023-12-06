@@ -44,36 +44,59 @@ export interface Database {
       }
       community_proposals: {
         Row: {
-          community_id: number
+          contract_address: string
           created_at: string
-          details: string | null
-          details_hash: string | null
+          details: string
+          details_hash: string
           earliest: string | null
           latest: string | null
+          no_votes: number | null
+          no_votes_title: string
           proposal_id: number
           title: string
+          txn_hash: string
+          yes_votes: number | null
+          yes_votes_title: string
         }
         Insert: {
-          community_id: number
+          contract_address: string
           created_at?: string
-          details?: string | null
-          details_hash?: string | null
+          details: string
+          details_hash: string
           earliest?: string | null
           latest?: string | null
+          no_votes?: number | null
+          no_votes_title: string
           proposal_id?: number
           title: string
+          txn_hash: string
+          yes_votes?: number | null
+          yes_votes_title: string
         }
         Update: {
-          community_id?: number
+          contract_address?: string
           created_at?: string
-          details?: string | null
-          details_hash?: string | null
+          details?: string
+          details_hash?: string
           earliest?: string | null
           latest?: string | null
+          no_votes?: number | null
+          no_votes_title?: string
           proposal_id?: number
           title?: string
+          txn_hash?: string
+          yes_votes?: number | null
+          yes_votes_title?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "community_proposals_contract_address_fkey"
+            columns: ["contract_address"]
+            isOneToOne: false
+            referencedRelation: "communities"
+            referencedColumns: ["contract_address"]
+          }
+        ]
       }
     }
     Views: {

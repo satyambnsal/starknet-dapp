@@ -18,4 +18,9 @@ export type CommunityProposal = {
   latest: string | null;
   proposal_id: number;
   title: string;
+  yes_votes: number;
+  no_votes: number;
+  yes_votes_title: string;
+  no_votes_title: string;
+  txn_hash: string;
 };

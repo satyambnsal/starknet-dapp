@@ -29,8 +29,10 @@ import {
   shortString,
   BigNumberish,
 } from "starknet";
-import { toast } from "sonner";
+import { toast } from "react-hot-toast";
 import { AwesomeModal } from "./common/Modal";
+import { createNewCommunity } from "@/utils/helpers";
+import { Spinner } from "./common/Spinner";
 
 export const CreateCommunity = () => {
   const { address, account } = useAccount();
@@ -74,9 +76,28 @@ export const CreateCommunity = () => {
         constructorCalldata: constructorData,
       });
 
-      console.log("#### Deploy Response #### ", deployResponse);
-      await provider.waitForTransaction(deployResponse.transaction_hash);
+      if (
+        deployResponse?.transaction_hash &&
+        deployResponse?.contract_address
+      ) {
+        const { transaction_hash, contract_address } = deployResponse;
+        const [contract_addr] = contract_address;
+        try {
+          await createNewCommunity({
+            contract_address: contract_addr,
+            txn_hash: transaction_hash,
+            owner_address: address,
+            description: details,
+            title,
+            eligibility_token: eligibilityToken,
+          });
+        } catch (err) {
+          console.error(err);
+          toast("Failed to Deploy");
+        }
+      }
       toast("Proposal deployed successfully");
+      setShowModal(false);
     } catch (error) {
       console.log(error);
       toast(error?.toString());
@@ -87,10 +108,6 @@ export const CreateCommunity = () => {
 
   return (
     <div className="w-full max-w-3xl">
-      <Heading>Loyalty Token</Heading>
-      <p>Address: {address}</p>
-
-      <DividerHorizontalIcon />
       <AwesomeModal
         isOpen={showModal}
         onToggle={() => {
@@ -148,7 +165,13 @@ export const CreateCommunity = () => {
             disabled={!address || isTxPending || !title || !details}
             mt="4"
           >
-            Submit
+            {isTxPending ? (
+              <span>
+                Submitting <Spinner />
+              </span>
+            ) : (
+              <span>Submit</span>
+            )}
           </Button>
         </Flex>
       </AwesomeModal>
@@ -156,11 +179,11 @@ export const CreateCommunity = () => {
         onClick={() => {
           setShowModal(true);
         }}
+        className="mx-auto block text-center"
+        mt="9"
       >
         Create New Space
       </Button>
-
-      <DividerHorizontalIcon />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 // import Image from "next/image";
 
-import { Button, Heading, Link, Text } from "@radix-ui/themes";
+import { Button, Container, Flex, Heading, Link, Text } from "@radix-ui/themes";
 import { MyContainer } from "@/components/MyContainer";
 import { useRouter } from "next/navigation";
 
@@ -23,33 +23,34 @@ export function Hero() {
         <div className="from-white absolute inset-x-0 top-0 h-40 bg-gradient-to-b" />
         <div className="from-white absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t" />
       </div> */}
-      <MyContainer className="relative">
-        <div>
-          <div className="mx-auto max-w-4xl lg:max-w-4xl lg:px-6">
-            <h1 className="font-display text-5xl font-bold sm:text-7xl">
-              <Heading className="block text-center">Stark Voice</Heading>
-              <Heading className="block text-center text-3xl">
-                Decentralized Voting Platform
-              </Heading>
-            </h1>
-            <Text className="font-display mt-10 space-y-6 text-2xl tracking-wide">
-              Welcome to our innovative Decentralized Voting Platform, a
-              cutting-edge system designed to empower users by providing a
-              secure and transparent way to participate in decision-making
-              processes. This platform leverages blockchain technology to ensure
-              trust, transparency, and efficiency in voting on various
-              proposals. This platform will primarily be available to Starknet
-            </Text>
-
-            <Button
-              onClick={() => router.push("/dashboard")}
-              className="mt-10 block w-full"
-            >
-              Start Now!
-            </Button>
-          </div>
-        </div>
-      </MyContainer>
+      <Flex
+        direction="column"
+        className="mx-auto max-w-4xl lg:max-w-4xl lg:px-6"
+        align="center"
+      >
+        <h1 className="font-display text-5xl font-bold sm:text-7xl">
+          <Heading className="block text-center">Stark Voice</Heading>
+          <Heading className="block text-center text-3xl">
+            Decentralized Voting Platform
+          </Heading>
+        </h1>
+        <Text className="font-display space-y-6 text-2xl tracking-wide" mt="8">
+          Welcome to our innovative Decentralized Voting Platform, a
+          cutting-edge system designed to empower users by providing a secure
+          and transparent way to participate in decision-making processes. This
+          platform leverages blockchain technology to ensure trust,
+          transparency, and efficiency in voting on various proposals. This
+          platform will primarily be available to Starknet
+        </Text>
+        <Button
+          onClick={() => router.push("/dashboard")}
+          className="w-64 cursor-pointer"
+          size="3"
+          mt="9"
+        >
+          Start Now!
+        </Button>
+      </Flex>
     </div>
   );
 }
