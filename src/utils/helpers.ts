@@ -9,18 +9,33 @@ type NewProposalInput = {
   community_id: number;
 };
 
+type NewCommunityInput = {
+  title: string;
+  description: string;
+  owner_address: string;
+  contract_address: string;
+  txn_hash: string;
+  eligibility_token: string;
+};
+
 export const createNewCommunity = async ({
   title,
   description,
   owner_address,
-}: {
-  title: string;
-  description: string;
-  owner_address: string;
-}) => {
+  contract_address,
+  txn_hash,
+  eligibility_token,
+}: NewCommunityInput) => {
   const { error, data } = await supabaseClient
     .from("communities")
-    .insert({ title, description, owner_address });
+    .insert({
+      title,
+      description,
+      owner_address,
+      contract_address,
+      txn_hash,
+      eligibility_token,
+    });
   return { error, data };
 };
 

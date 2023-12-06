@@ -1,7 +1,6 @@
 "use client";
 import {
   Button,
-  Container,
   Flex,
   Heading,
   TextArea,
@@ -58,11 +57,6 @@ export const CreateCommunity = () => {
 
     try {
       setIsTxPending(true);
-      // const title: RawCalldata = [
-      //   shortString.encodeShortString("Sample title"),
-      //   shortString.encodeShortString(" hello world"),
-      // ];
-
       console.log("data", { address, title, eligibilityToken, details });
 
       const starkVoiceCalldata: CallData = new CallData(StarkVoiceAbi);
@@ -74,14 +68,14 @@ export const CreateCommunity = () => {
 
       // console.log({ starkVoiceCalldata });
       // console.log("constructor calldata", constructorData);
-
-      const deployResponse = await account.deployContract({
+      const a: any = window.starknet_braavos?.account;
+      const deployResponse = await a.deploy({
         classHash: CONTRACT_DETAILS.goerli.StarkVoice.classhash,
         constructorCalldata: constructorData,
       });
 
       console.log("#### Deploy Response #### ", deployResponse);
-      // await provider.waitForTransaction(deployResponse.transaction_hash);
+      await provider.waitForTransaction(deployResponse.transaction_hash);
       toast("Proposal deployed successfully");
     } catch (error) {
       console.log(error);

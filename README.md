@@ -33,6 +33,10 @@ yarn dev
 # or
 pnpm dev
 ```
+Generate database types
+```
+supabase gen types typescript --project-id rgxdnnfgcbznmumcdlgp > src/types_db.ts
+```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

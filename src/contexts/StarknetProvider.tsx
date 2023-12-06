@@ -13,9 +13,9 @@ import {
 } from "@starknet-react/core";
 
 console.log("api key", process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY);
-// const provider = process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY;
+// const apiKey = process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY;
 
-// const provider = publicProvider();
+// // const provider = alchemyProvider({});
 
 // console.log("provider", provider);
 export const StarknetProvider = ({

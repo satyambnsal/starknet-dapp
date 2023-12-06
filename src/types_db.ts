@@ -4,82 +4,91 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json | undefined }
-  | Json[];
+  | Json[]
 
 export interface Database {
   public: {
     Tables: {
       communities: {
         Row: {
-          community_id: number;
-          created_at: string;
-          description: string | null;
-          owner_address: string | null;
-          title: string;
-        };
+          community_id: number
+          contract_address: string
+          created_at: string
+          description: string | null
+          eligibility_token: string
+          owner_address: string | null
+          title: string
+          txn_hash: string
+        }
         Insert: {
-          community_id?: number;
-          created_at?: string;
-          description?: string | null;
-          owner_address?: string | null;
-          title?: string;
-        };
+          community_id?: number
+          contract_address: string
+          created_at?: string
+          description?: string | null
+          eligibility_token: string
+          owner_address?: string | null
+          title?: string
+          txn_hash: string
+        }
         Update: {
-          community_id?: number;
-          created_at?: string;
-          description?: string | null;
-          owner_address?: string | null;
-          title?: string;
-        };
-        Relationships: [];
-      };
+          community_id?: number
+          contract_address?: string
+          created_at?: string
+          description?: string | null
+          eligibility_token?: string
+          owner_address?: string | null
+          title?: string
+          txn_hash?: string
+        }
+        Relationships: []
+      }
       community_proposals: {
         Row: {
-          community_id: number;
-          created_at: string;
-          details: string | null;
-          details_hash: string | null;
-          earliest: string | null;
-          latest: string | null;
-          proposal_id: number;
-          title: string;
-        };
+          community_id: number
+          created_at: string
+          details: string | null
+          details_hash: string | null
+          earliest: string | null
+          latest: string | null
+          proposal_id: number
+          title: string
+        }
         Insert: {
-          community_id: number;
-          created_at?: string;
-          details?: string | null;
-          details_hash?: string | null;
-          earliest?: string | null;
-          latest?: string | null;
-          proposal_id?: number;
-          title: string;
-        };
+          community_id: number
+          created_at?: string
+          details?: string | null
+          details_hash?: string | null
+          earliest?: string | null
+          latest?: string | null
+          proposal_id?: number
+          title: string
+        }
         Update: {
-          community_id?: number;
-          created_at?: string;
-          details?: string | null;
-          details_hash?: string | null;
-          earliest?: string | null;
-          latest?: string | null;
-          proposal_id?: number;
-          title?: string;
-        };
-        Relationships: [];
-      };
-    };
+          community_id?: number
+          created_at?: string
+          details?: string | null
+          details_hash?: string | null
+          earliest?: string | null
+          latest?: string | null
+          proposal_id?: number
+          title?: string
+        }
+        Relationships: []
+      }
+    }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Enums: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
+      [_ in never]: never
+    }
+  }
 }
 
 export type Tables<
@@ -93,7 +102,7 @@ export type Tables<
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
       Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R;
+      Row: infer R
     }
     ? R
     : never
@@ -101,11 +110,11 @@ export type Tables<
       Database["public"]["Views"])
   ? (Database["public"]["Tables"] &
       Database["public"]["Views"])[PublicTableNameOrOptions] extends {
-      Row: infer R;
+      Row: infer R
     }
     ? R
     : never
-  : never;
+  : never
 
 export type TablesInsert<
   PublicTableNameOrOptions extends
@@ -116,17 +125,17 @@ export type TablesInsert<
     : never = never
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I;
+      Insert: infer I
     }
     ? I
     : never
   : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
   ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
-      Insert: infer I;
+      Insert: infer I
     }
     ? I
     : never
-  : never;
+  : never
 
 export type TablesUpdate<
   PublicTableNameOrOptions extends
@@ -137,17 +146,17 @@ export type TablesUpdate<
     : never = never
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U;
+      Update: infer U
     }
     ? U
     : never
   : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
   ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
-      Update: infer U;
+      Update: infer U
     }
     ? U
     : never
-  : never;
+  : never
 
 export type Enums<
   PublicEnumNameOrOptions extends
@@ -160,4 +169,4 @@ export type Enums<
   ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : PublicEnumNameOrOptions extends keyof Database["public"]["Enums"]
   ? Database["public"]["Enums"][PublicEnumNameOrOptions]
-  : never;
+  : never

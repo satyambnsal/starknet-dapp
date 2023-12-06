@@ -34,7 +34,6 @@ export default function Dashboard() {
     <Container className="mx-auto mt-10 flex max-w-md flex-col">
       <CreateCommunity />
       <DividerHorizontalIcon />
-      {isLoading && loadingContent}
       {communities.map(({ community_id, title = "", description }) => (
         <Card key={community_id}>
           <Flex direction="column" gap="2">
@@ -48,6 +47,7 @@ export default function Dashboard() {
           </Flex>
         </Card>
       ))}
+      {loadingContent}
     </Container>
   );
 }
