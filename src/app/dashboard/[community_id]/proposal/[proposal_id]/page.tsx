@@ -3,10 +3,12 @@
 import { CardShimmer } from "@/components/common/CardShimmer";
 import { CommunityProposal } from "@/types";
 import { getProposal } from "@/utils/supabase-client";
-import { Container, Heading, Text, Button, Box } from "@radix-ui/themes";
+import { Heading, Text, Button, Box, Flex } from "@radix-ui/themes";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAccount } from "@starknet-react/core";
+import toast from "react-hot-toast";
+import { CallData, cairo } from "starknet";
 
 export default function Proposal() {
   const pathName = usePathname();
@@ -15,8 +17,8 @@ export default function Proposal() {
   const { address, account } = useAccount();
   const [isTxPending, setIsTxPending] = useState(false);
   const [isRefetch, setIsRefetch] = useState(false);
-
-  const [txn_hash, contract_address] = pathSegments.reverse();
+  console.log("path segments", pathSegments);
+  const [txn_hash, _, contract_address] = pathSegments.reverse();
 
   const [communityProposal, setCommunityProposal] = useState<CommunityProposal>(
     {} as CommunityProposal
@@ -39,55 +41,64 @@ export default function Proposal() {
   }
 
   const handleVote = async (vote: number) => {
-        setIsTxPending(true);
+    if (!address || !communityProposal.proposal_id) {
+      return toast("Please connect your account!");
+    }
+    setIsTxPending(true);
     const a: any = window.starknet_braavos?.account ?? account;
-
+    console.log("community proposal", communityProposal);
     try {
       const a: any = window.starknet_braavos?.account ?? account;
       const result = await a.execute({
-        contractAddress: contractAddress,
-        entrypoint: "create_proposal",
+        contractAddress: contract_address,
+        entrypoint: "vote",
         calldata: CallData.compile({
-          title: cairo.tuple(titles[0], titles[1], titles[2]),
-          details_ipfs_url: cairo.tuple(titles[0], titles[1], titles[2]),
+          proposal_id: cairo.felt(communityProposal.proposal_id),
+          vote: cairo.felt(vote),
         }),
       });
       console.log("#### DEPLOY RESPONSE", result);
       toast("Proposal created successfully");
       if (result?.transaction_hash) {
-        await createNewProposalApi({
-          contract_address: contractAddress,
-          txn_hash: result.transaction_hash,
-          title,
-          details,
-          details_hash: details,
-          yes_votes_title: yesVoteTitle,
-          no_votes_title: noVoteTitle,
-        });
+        //   await createNewProposalApi({
+        //     contract_address: contractAddress,
+        //     txn_hash: result.transaction_hash,
+        //     title,
+        //     details,
+        //     details_hash: details,
+        //     yes_votes_title: yesVoteTitle,
+        //     no_votes_title: noVoteTitle,
+        //   });
+        // }
+        setIsTxPending(false);
+        toast("You've Voted successfully! 🔥");
       }
-      setIsTxPending(false);
-      setShowModal(false);
-      toast("Successfully created a new proposal!");
     } catch (err) {
       console.error(err);
-      toast("Failed to create proposal");
+      toast("Failed to vote!");
       setIsTxPending(false);
-      setShowModal(false);
     }
   };
   return (
-    <Container>
-      <Heading>{communityProposal.title}</Heading>
-      <Text>{communityProposal.details}</Text>
+    <main className="flex h-screen w-full justify-center align-middle">
+      <Box mx="auto" mt="9" className="max-w-2xl">
+        <Flex direction="column" gap="3">
+          <Heading>{communityProposal.title}</Heading>
+          <Text>{communityProposal.details}</Text>
 
-      <Box>
-        <Button onClick={() => handleVote(1)}>
-          {communityProposal.yes_votes_title}
-        </Button>
-        <Button onClick={() => handleVote(0)}>
-          {communityProposal.no_votes_title}
-        </Button>
+          <Heading size="4" color="grass" mt="8">
+            CAST YOUR VOTE
+          </Heading>
+          <Flex gap="9">
+            <Button onClick={() => handleVote(1)} size="3" className="w-48">
+              {communityProposal.yes_votes_title}
+            </Button>
+            <Button onClick={() => handleVote(0)} size="3" className="w-48">
+              {communityProposal.no_votes_title}
+            </Button>
+          </Flex>
+        </Flex>
       </Box>
-    </Container>
+    </main>
   );
 }
