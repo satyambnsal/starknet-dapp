@@ -47,11 +47,14 @@ export default function Dashboard() {
       <Grid columns="3" gap="3" mt="6">
         {communities.map(
           ({ community_id, title = "", description, contract_address }) => (
-            <Card
-              key={community_id}
-              onClick={() => router.push(`/dashboard/${contract_address}`)}
-            >
-              <Flex direction="column" justify="center" align="center" gap="2">
+            <Card key={community_id}>
+              <Flex
+                direction="column"
+                justify="center"
+                align="center"
+                gap="2"
+                onClick={() => router.push(`/dashboard/${contract_address}`)}
+              >
                 <Avatar
                   fallback={title.charAt(0).toLocaleUpperCase()}
                   size="6"
@@ -60,13 +63,15 @@ export default function Dashboard() {
                   {title}
                 </Heading>
                 <Text size="3">{description}</Text>
-                <Link
-                  href={`${VOYAGER_BASE_ADDRESS}/contract/${contract_address}`}
-                  target="_blank"
-                >
-                  View on Voyager
-                </Link>
               </Flex>
+              <Link
+                href={`${VOYAGER_BASE_ADDRESS}/contract/${contract_address}`}
+                target="_blank"
+                className="mx-auto mt-6 block text-center"
+                mt="4"
+              >
+                View on Voyager
+              </Link>
             </Card>
           )
         )}

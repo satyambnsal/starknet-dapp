@@ -9,6 +9,7 @@ type NewProposalInput = {
   txn_hash: string;
   yes_votes_title: string;
   no_votes_title: string;
+  proposal_id: number;
 };
 
 type NewCommunityInput = {
@@ -47,6 +48,7 @@ export const createNewProposalApi = async ({
   txn_hash,
   yes_votes_title,
   no_votes_title,
+  proposal_id,
 }: NewProposalInput) => {
   const { error, data } = await supabaseClient
     .from("community_proposals")
@@ -58,6 +60,7 @@ export const createNewProposalApi = async ({
       yes_votes_title,
       no_votes_title,
       details_hash,
+      proposal_id,
     });
   return { error, data };
 };

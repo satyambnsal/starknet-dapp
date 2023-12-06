@@ -12,7 +12,7 @@ export const CONTRACT_DETAILS = {
     },
     StarkVoice: {
       classhash:
-        "0x53cab15036ebc86e4225af0ac08907b267969bf81263f3422a9c1f64b200e54",
+        "0x4cb49abb4c3a94f35d15a93518675909f6f35bf518bd729a1dc79c0f5f4ab1d",
     },
   },
   mainnet: {},

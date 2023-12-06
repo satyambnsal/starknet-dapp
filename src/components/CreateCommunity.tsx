@@ -100,7 +100,7 @@ export const CreateCommunity = () => {
       setShowModal(false);
     } catch (error) {
       console.log(error);
-      toast(error?.toString());
+      toast("Failed to deploy. check console for more logs!");
     }
 
     setIsTxPending(false);

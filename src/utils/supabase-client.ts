@@ -32,3 +32,18 @@ export const getProposals = cache(
     return data;
   }
 );
+
+export const getProposal = cache(
+  async (txn_hash: string): Promise<CommunityProposal> => {
+    const { data, error } = await supabaseClient
+      .from("community_proposals")
+      .select("*")
+      .eq("txn_hash", txn_hash);
+    if (error || !data) {
+      console.log(error.message);
+      throw new Error("failed to fetch data");
+    }
+    if (data.length === 0) return {} as CommunityProposal;
+    return data[0];
+  }
+);

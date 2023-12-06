@@ -67,16 +67,19 @@ export default function Space() {
     const titles = splitString(title);
     setIsTxPending(true);
     const a: any = window.starknet_braavos?.account ?? account;
-
+    const proposal_id = Date.now();
+    console.log("proposal id", proposal_id);
     try {
       console.log("titles", titles);
       const a: any = window.starknet_braavos?.account ?? account;
+
       const result = await a.execute({
         contractAddress: contractAddress,
         entrypoint: "create_proposal",
         calldata: CallData.compile({
           title: cairo.tuple(titles[0], titles[1], titles[2]),
           details_ipfs_url: cairo.tuple(titles[0], titles[1], titles[2]),
+          proposal_id,
         }),
       });
       console.log("#### DEPLOY RESPONSE", result);
@@ -90,6 +93,7 @@ export default function Space() {
           details_hash: details,
           yes_votes_title: yesVoteTitle,
           no_votes_title: noVoteTitle,
+          proposal_id,
         });
       }
       setIsTxPending(false);
@@ -128,7 +132,7 @@ export default function Space() {
             <TextFieldInput
               color="blue"
               variant="soft"
-              placeholder="Enter Space Name"
+              placeholder="Enter Proposal Title"
               onChange={(e) => {
                 setTitle(e.target.value);
               }}
@@ -229,28 +233,35 @@ export default function Space() {
           </Button>
         </Flex>
       </AwesomeModal>
-      <Grid columns="1" gap="3" mt="6">
-        {proposals.map(
-          ({ proposal_id, title = "", details, earliest, latest }) => (
-            <Card
-              key={proposal_id}
-              onClick={() => router.push(`/dashboard/${proposal_id}`)}
-            >
-              <Flex direction="column" justify="center" align="center" gap="2">
-                <Heading size="7" highContrast>
-                  {title}
-                </Heading>
-                <Text size="3">{details}</Text>
-                <Link
-                  href={`${VOYAGER_BASE_ADDRESS}/contract/${contractAddress}`}
-                  target="_blank"
-                >
-                  View on Voyager
-                </Link>
-              </Flex>
-            </Card>
-          )
-        )}
+      <Grid
+        columns="1"
+        gap="3"
+        mt="6"
+        className="max-w-3xl"
+        justify="center"
+        align="center"
+      >
+        {proposals.map(({ proposal_id, title = "", details, txn_hash }) => (
+          <Card
+            key={proposal_id}
+            onClick={() =>
+              router.push(`/dashboard/${contractAddress}/proposal/${txn_hash}`)
+            }
+          >
+            <Flex direction="column" justify="center" align="center" gap="2">
+              <Heading size="7" highContrast>
+                {title}
+              </Heading>
+              <Text size="3">{details}</Text>
+              <Link
+                href={`${VOYAGER_BASE_ADDRESS}/tx/${txn_hash}`}
+                target="_blank"
+              >
+                View on Voyager
+              </Link>
+            </Flex>
+          </Card>
+        ))}
       </Grid>
     </main>
   );

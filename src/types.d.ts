@@ -10,7 +10,6 @@ export type Community = {
 };
 
 export type CommunityProposal = {
-  community_id: number;
   created_at: string;
   details: string | null;
   details_hash: string | null;
@@ -18,8 +17,8 @@ export type CommunityProposal = {
   latest: string | null;
   proposal_id: number;
   title: string;
-  yes_votes: number;
-  no_votes: number;
+  yes_votes: number | null;
+  no_votes: number | null;
   yes_votes_title: string;
   no_votes_title: string;
   txn_hash: string;
