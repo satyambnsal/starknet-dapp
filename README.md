@@ -1,5 +1,8 @@
 <div align="center">
-  <h1>Create Starknet App</h1>
+# StarkVoice: **Decentralised Voting Platform**
+
+Welcome to our innovative Decentralized Voting Platform, a cutting-edge system designed to empower users by providing a secure and transparent way to participate in decision-making processes. This platform leverages blockchain technology to ensure trust, transparency, and efficiency in voting on various proposals. This platform will primarily be available to Starknet.
+
   <img src="docs/images/logo.jpeg" height="600" width="600">
   <br />
   <a href="https://github.com/satyambnsal/starknet-dapp/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
