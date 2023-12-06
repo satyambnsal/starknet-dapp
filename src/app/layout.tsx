@@ -33,7 +33,7 @@ export default function RootLayout({
             scaling="100%"
             radius="large"
           >
-            <div className="h-screen w-full">
+            <div className="min-h-screen">
               <Header />
               {children}
               <Toaster />

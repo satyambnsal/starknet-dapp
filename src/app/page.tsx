@@ -1,7 +1,6 @@
 "use client";
 
 import { Theme } from "@radix-ui/themes";
-import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { FAQ } from "@/components/common/FAQ";
 
@@ -12,7 +11,7 @@ import { FAQ } from "@/components/common/FAQ";
  */
 export default function Home() {
   return (
-    <div>
+    <div className="mt-8">
       <Hero />
       <FAQ />
     </div>
