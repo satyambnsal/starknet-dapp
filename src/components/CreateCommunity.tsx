@@ -166,7 +166,7 @@ export const CreateCommunity = () => {
             mt="4"
           >
             {isTxPending ? (
-              <span>
+              <span className="flex items-center justify-center">
                 Submitting <Spinner />
               </span>
             ) : (
