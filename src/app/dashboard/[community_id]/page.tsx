@@ -108,14 +108,20 @@ export default function Space() {
   };
 
   return (
-    <main className="text-color-indigo flex min-h-screen flex-col items-center justify-between p-24">
-      <Button
-        onClick={() => {
-          setShowModal(true);
-        }}
-      >
-        Create New Proposal
-      </Button>
+    <main className="text-color-indigo flex min-h-screen flex-col items-center  p-24">
+      <Flex justify="between">
+        <Button
+          onClick={() => {
+            setShowModal(true);
+          }}
+          className="mx-auto block w-96 text-center"
+          mt="9"
+          mx="auto"
+          size="4"
+        >
+          Create New Proposal
+        </Button>
+      </Flex>
       <div className="my-4 border-t border-gray-300"></div>
       <AwesomeModal
         isOpen={showModal}
@@ -233,6 +239,11 @@ export default function Space() {
           </Button>
         </Flex>
       </AwesomeModal>
+      {proposals.length === 0 && (
+        <Flex align="start" mt="8">
+          <Heading size="9"> NO PROPOSAL FOUND</Heading>
+        </Flex>
+      )}
       <Grid
         columns="1"
         gap="3"
