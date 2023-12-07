@@ -3,7 +3,7 @@
 import { CardShimmer } from "@/components/common/CardShimmer";
 import { CommunityProposal } from "@/types";
 import { getProposal } from "@/utils/supabase-client";
-import { Heading, Text, Button, Box, Flex } from "@radix-ui/themes";
+import { Heading, Text, Button, Box, Flex, Badge } from "@radix-ui/themes";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAccount, useContractRead } from "@starknet-react/core";
@@ -119,23 +119,34 @@ export default function Proposal() {
           <Heading size="4" color="grass" mt="8">
             Vote Count
           </Heading>
-          <Heading>
-            YES:{" "}
-            {voteResult ? (
-              parseInt((voteResult as any)[0])
-            ) : (
-              <span>Fetching from contract...</span>
-            )}
-          </Heading>
-          <Heading>
-            {" "}
-            NO:{" "}
-            {voteResult ? (
-              parseInt((voteResult as any)[1])
-            ) : (
-              <span>Fetching from contract...</span>
-            )}
-          </Heading>
+          <Flex gap="7">
+            <Heading>
+              YES:{" "}
+              {voteResult ? (
+                <div className="mt-4 flex gap-2 ">
+                  {parseInt((voteResult as any)[0])}
+                  <Badge color="green" ml="6">
+                    {parseInt((voteResult as any)[2])} %
+                  </Badge>
+                </div>
+              ) : (
+                <span>Fetching from contract...</span>
+              )}
+            </Heading>
+            <Heading className="mt-8">
+              NO:{" "}
+              {voteResult ? (
+                <div className="mt-4 flex gap-2">
+                  {parseInt((voteResult as any)[1])}
+                  <Badge color="red" ml="6">
+                    {parseInt((voteResult as any)[3])} %
+                  </Badge>
+                </div>
+              ) : (
+                <span>Fetching from contract...</span>
+              )}
+            </Heading>
+          </Flex>
           <Heading size="4" color="grass" mt="4">
             CAST YOUR VOTE
           </Heading>
