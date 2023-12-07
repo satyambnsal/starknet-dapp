@@ -25,7 +25,7 @@ export function Hero() {
       </div> */}
       <Flex
         direction="column"
-        className="mx-auto max-w-4xl lg:max-w-4xl lg:px-6"
+      className="mx-auto max-w-4xl lg:max-w-4xl lg:px-6"
         align="center"
       >
         <h1 className="font-display text-5xl font-bold sm:text-7xl">
