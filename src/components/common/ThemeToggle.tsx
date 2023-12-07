@@ -18,6 +18,7 @@ export const ThemeToggle = () => {
           const newTheme = resolvedTheme === "dark" ? "light" : "dark";
           setTheme(newTheme);
         }}
+        className="p-6"
       >
         <SunIcon
           width="16"

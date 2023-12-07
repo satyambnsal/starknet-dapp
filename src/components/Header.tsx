@@ -16,14 +16,16 @@ export const Header = () => {
   return (
     <Container>
       <Box height="0" className="absolute left-4 top-8 flex items-center gap-4">
-        <Link href="/">
+        <Link href="/" className="p-4">
           <Heading className="leading-2">Stark Voice</Heading>
         </Link>
-        <Link href="/dashboard">Dashboard</Link>
-        <Link href={GITHUB_CONTRACTS_URL} target="_blank">
+        <Link href="/dashboard" className="py-4">
+          Dashboard
+        </Link>
+        <Link href={GITHUB_CONTRACTS_URL} target="_blank" className="py-4">
           <GitHubLogoIcon />
         </Link>
-        <Link href={FEEDBACK_FORM_URL} target="_blank">
+        <Link href={FEEDBACK_FORM_URL} target="_blank" className="py-4">
           Feedback
         </Link>
       </Box>
