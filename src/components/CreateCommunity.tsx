@@ -108,7 +108,7 @@ export const CreateCommunity = () => {
   };
 
   return (
-    <div className="w-full max-w-3xl">
+    <div className="w-full">
       <AwesomeModal
         isOpen={showModal}
         onToggle={() => {
@@ -180,15 +180,19 @@ export const CreateCommunity = () => {
           </Button>
         </Flex>
       </AwesomeModal>
-      <Button
-        onClick={() => {
-          setShowModal(true);
-        }}
-        className="mx-auto block text-center"
-        mt="9"
-      >
-        Create New Space
-      </Button>
+      <Flex justify="between">
+        <Button
+          onClick={() => {
+            setShowModal(true);
+          }}
+          className="mx-auto block w-96 text-center"
+          mt="9"
+          mx="auto"
+          size="4"
+        >
+          Create New Space
+        </Button>
+      </Flex>
     </div>
   );
 };

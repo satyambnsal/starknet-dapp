@@ -1,5 +1,5 @@
 "use client";
-import { Box, Badge, Container, Link } from "@radix-ui/themes";
+import { Box, Badge, Container, Link, Heading } from "@radix-ui/themes";
 import { ThemeToggle } from "./common/ThemeToggle";
 import { ConnectButton } from "./buttons/ConnectButton";
 import { useNetwork } from "@starknet-react/core";
@@ -14,7 +14,9 @@ export const Header = () => {
   return (
     <Container>
       <Box height="0" className="absolute left-4 top-8 flex items-center gap-4">
-        <Link href="/">Home</Link>
+        <Link href="/">
+          <Heading className="leading-2">Stark Voice</Heading>
+        </Link>
         <Link href="/dashboard">Dashboard</Link>
         <Link href={GITHUB_CONTRACTS_URL} target="_blank">
           <GitHubLogoIcon />
