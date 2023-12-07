@@ -133,7 +133,7 @@ export default function Proposal() {
                 <span>Fetching from contract...</span>
               )}
             </Heading>
-            <Heading className="mt-8">
+            <Heading>
               NO:{" "}
               {voteResult ? (
                 <div className="mt-4 flex gap-2">
