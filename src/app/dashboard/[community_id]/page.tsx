@@ -246,7 +246,7 @@ export default function Space() {
       )}
       <Grid
         columns="1"
-        gap="3"
+        gap="4"
         mt="6"
         className="max-w-3xl"
         justify="center"
@@ -260,6 +260,7 @@ export default function Space() {
                 `/dashboard/${contractAddress}/proposal/${proposal_id}`
               )
             }
+            className="px-8 py-8"
           >
             <Flex direction="column" justify="center" align="center" gap="2">
               <Heading size="7" highContrast>
