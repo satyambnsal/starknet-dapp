@@ -31,7 +31,7 @@ export function Hero() {
         <h1 className="font-display text-5xl font-bold sm:text-7xl">
           <Heading className="block text-center">Stark Voice</Heading>
           <Heading className="block text-center text-3xl">
-            Decentralized Voting Platform
+            Decentralized Voting Platform on Starknet
           </Heading>
         </h1>
         <Text className="font-display space-y-6 text-2xl tracking-wide" mt="8">
@@ -40,7 +40,7 @@ export function Hero() {
           and transparent way to participate in decision-making processes. This
           platform leverages blockchain technology to ensure trust,
           transparency, and efficiency in voting on various proposals. This
-          platform will primarily be available to Starknet
+          platform will primarily be available to Starknet.
         </Text>
         <Button
           onClick={() => router.push("/dashboard")}
