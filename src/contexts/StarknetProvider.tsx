@@ -32,7 +32,7 @@ export const StarknetProvider = ({
   return (
     <StarknetConfig
       chains={[mainnet, goerli]}
-      provider={lavalProvider({ apiKey: "fbd4ea72f2a3a3f83b874c3f2eeecb09" })}
+      provider={publicProvider()}
       connectors={connectors}
     >
       {children}
