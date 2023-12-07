@@ -121,16 +121,20 @@ export default function Proposal() {
           </Heading>
           <Heading>
             YES:{" "}
-            {voteResult
-              ? parseInt((voteResult as any)[0])
-              : communityProposal.yes_votes}
+            {voteResult ? (
+              parseInt((voteResult as any)[0])
+            ) : (
+              <span>Fetching from contract...</span>
+            )}
           </Heading>
           <Heading>
             {" "}
             NO:{" "}
-            {voteResult
-              ? parseInt((voteResult as any)[1])
-              : communityProposal.no_votes}
+            {voteResult ? (
+              parseInt((voteResult as any)[1])
+            ) : (
+              <span>Fetching from contract...</span>
+            )}
           </Heading>
           <Heading size="4" color="grass" mt="4">
             CAST YOUR VOTE
