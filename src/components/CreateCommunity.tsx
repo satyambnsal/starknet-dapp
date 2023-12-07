@@ -1,34 +1,15 @@
 "use client";
-import {
-  Button,
-  Flex,
-  Heading,
-  TextArea,
-  TextField,
-  Text,
-} from "@radix-ui/themes";
-import {
-  useAccount,
-  useBalance,
-  useContract,
-  useContractWrite,
-  useProvider,
-} from "@starknet-react/core";
+import { Button, Flex, TextArea, Text, Callout } from "@radix-ui/themes";
+import { useAccount, useProvider } from "@starknet-react/core";
 import { CONTRACT_DETAILS } from "@/contract-config";
 import StarkVoiceAbi from "@/abis/StarkVoice.json";
 
-import { useMemo, useState } from "react";
-import { DividerHorizontalIcon } from "@radix-ui/react-icons";
+import { useState } from "react";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 // import { createHelia } from "helia";
 // import { strings } from "@helia/strings";
 
-import {
-  CallData,
-  RawCalldata,
-  cairo,
-  shortString,
-  BigNumberish,
-} from "starknet";
+import { CallData, shortString } from "starknet";
 import { toast } from "react-hot-toast";
 import { AwesomeModal } from "./common/Modal";
 import { createNewCommunity } from "@/utils/helpers";
@@ -117,6 +98,11 @@ export const CreateCommunity = () => {
         title="Create a New Community"
       >
         <Flex direction="column" gap="3">
+          <Callout.Root>
+            <Callout.Icon>
+              <InfoCircledIcon />
+            </Callout.Icon>
+          </Callout.Root>
           <label>
             <Text as="div" size="2" mb="1" weight="bold">
               Title
@@ -163,6 +149,10 @@ export const CreateCommunity = () => {
             <Text size="1">
               Sample ERC20:
               0x6f735bd63191f3418f3ca50cd579f536ebed7f5b13c0f94d8d137f78f4b73a6
+            </Text>
+            <Text size="1" className="block">
+              Make sure you have these ERC20 tokens. Otherwise Deployment will
+              fail!.
             </Text>
           </label>
           <Button
