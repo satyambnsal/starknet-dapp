@@ -14,7 +14,7 @@ import {
   TextFieldInput,
 } from "@radix-ui/themes";
 import { VOYAGER_BASE_ADDRESS } from "@/utils/constants";
-import StarkVoiceAbi from "@/abis/StarkVoice.json";
+// import StarkVoiceAbi from "@/abis/StarkVoice.json";
 
 // import { StarkVoiceInstance } from "@/components/CreateCommunity";
 
@@ -66,12 +66,12 @@ export default function Space() {
     }
     const titles = splitString(title);
     setIsTxPending(true);
-    const a: any = window.starknet_braavos?.account ?? account;
     const proposal_id = Date.now();
     console.log("proposal id", proposal_id);
     try {
       console.log("titles", titles);
-      const a: any = window.starknet_braavos?.account ?? account;
+      const a: any =
+        window.starknet?.account ?? window.starknet_braavos?.account;
 
       const result = await a.execute({
         contractAddress: contractAddress,
@@ -245,7 +245,9 @@ export default function Space() {
           <Card
             key={proposal_id}
             onClick={() =>
-              router.push(`/dashboard/${contractAddress}/proposal/${txn_hash}`)
+              router.push(
+                `/dashboard/${contractAddress}/proposal/${proposal_id}`
+              )
             }
           >
             <Flex direction="column" justify="center" align="center" gap="2">

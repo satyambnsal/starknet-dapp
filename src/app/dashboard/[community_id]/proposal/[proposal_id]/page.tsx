@@ -6,10 +6,11 @@ import { getProposal } from "@/utils/supabase-client";
 import { Heading, Text, Button, Box, Flex } from "@radix-ui/themes";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useAccount } from "@starknet-react/core";
+import { useAccount, useContractRead } from "@starknet-react/core";
 import toast from "react-hot-toast";
 import { CallData, cairo } from "starknet";
 import { updateVoteApi } from "@/utils/helpers";
+import StarkVoiceAbi from "@/abis/StarkVoice.json";
 
 export default function Proposal() {
   const pathName = usePathname();
@@ -19,14 +20,28 @@ export default function Proposal() {
   const [isTxPending, setIsTxPending] = useState(false);
   const [isRefetch, setIsRefetch] = useState(false);
   console.log("path segments", pathSegments);
-  const [txn_hash, _, contract_address] = pathSegments.reverse();
+  const [proposal_id, _, contract_address] = pathSegments.reverse();
 
   const [communityProposal, setCommunityProposal] = useState<CommunityProposal>(
     {} as CommunityProposal
   );
 
+  const {
+    data: voteResult,
+    isError,
+    isLoading,
+    error,
+  } = useContractRead({
+    functionName: "get_vote_status",
+    args: [proposal_id],
+    abi: StarkVoiceAbi,
+    address: contract_address,
+    watch: true,
+  });
+  console.log({ voteResult, isError, isLoading, error });
+
   useEffect(() => {
-    getProposal(txn_hash)
+    getProposal(Number.parseInt(proposal_id))
       .then((proposal) => {
         setCommunityProposal(proposal);
       })
@@ -46,10 +61,11 @@ export default function Proposal() {
       return toast("Please connect your account!");
     }
     setIsTxPending(true);
-    const a: any = window.starknet_braavos?.account ?? account;
     console.log("community proposal", communityProposal);
     try {
-      const a: any = window.starknet_braavos?.account ?? account;
+      const a: any =
+        window.starknet?.account ?? window.starknet_braavos?.account;
+
       const result = await a.execute({
         contractAddress: contract_address,
         entrypoint: "vote",
@@ -91,6 +107,8 @@ export default function Proposal() {
       setIsTxPending(false);
     }
   };
+  const isButtonDisabled =
+    !address || isTxPending || !contract_address || !proposal_id;
   return (
     <main className="flex h-screen w-full justify-center align-middle">
       <Box mx="auto" mt="9" className="max-w-2xl">
@@ -101,16 +119,37 @@ export default function Proposal() {
           <Heading size="4" color="grass" mt="8">
             Vote Count
           </Heading>
-          <Heading>YES: {communityProposal.yes_votes}</Heading>
-          <Heading> NO: {communityProposal.no_votes}</Heading>
+          <Heading>
+            YES:{" "}
+            {voteResult
+              ? parseInt((voteResult as any)[0])
+              : communityProposal.yes_votes}
+          </Heading>
+          <Heading>
+            {" "}
+            NO:{" "}
+            {voteResult
+              ? parseInt((voteResult as any)[1])
+              : communityProposal.no_votes}
+          </Heading>
           <Heading size="4" color="grass" mt="4">
             CAST YOUR VOTE
           </Heading>
           <Flex gap="9">
-            <Button onClick={() => handleVote(1)} size="3" className="w-48">
+            <Button
+              onClick={() => handleVote(1)}
+              size="3"
+              className="w-48"
+              disabled={isButtonDisabled}
+            >
               {communityProposal.yes_votes_title}
             </Button>
-            <Button onClick={() => handleVote(0)} size="3" className="w-48">
+            <Button
+              onClick={() => handleVote(0)}
+              size="3"
+              className="w-48"
+              disabled={isButtonDisabled}
+            >
               {communityProposal.no_votes_title}
             </Button>
           </Flex>

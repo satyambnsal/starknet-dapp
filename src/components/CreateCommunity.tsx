@@ -70,7 +70,8 @@ export const CreateCommunity = () => {
 
       // console.log({ starkVoiceCalldata });
       // console.log("constructor calldata", constructorData);
-      const a: any = window.starknet_braavos?.account;
+      const a: any =
+        window.starknet?.account ?? window.starknet_braavos?.account;
       const deployResponse = await a.deploy({
         classHash: CONTRACT_DETAILS.goerli.StarkVoice.classhash,
         constructorCalldata: constructorData,
@@ -159,6 +160,10 @@ export const CreateCommunity = () => {
               }}
               value={eligibilityToken}
             />
+            <Text size="1">
+              Sample ERC20:
+              0x6f735bd63191f3418f3ca50cd579f536ebed7f5b13c0f94d8d137f78f4b73a6
+            </Text>
           </label>
           <Button
             onClick={() => createNewProposal()}
