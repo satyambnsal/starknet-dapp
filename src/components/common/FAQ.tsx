@@ -37,13 +37,18 @@ const planned_features = [
     id: 1,
     question: "User Hooks",
     answer:
-      "Users can opt for email notifications for voting results when voting is over.",
+      "Users can opt for email notifications for voting results when voting is over. User can also invite another user via email to vote on proposal.",
   },
   {
     id: 2,
-    question: "User Hooks",
+    question: "Arbitrary Code Execution",
     answer:
-      "Users can opt for email notifications for voting results when voting is over.",
+      "Users can define a external internal contract to be called once voting ends. For example, sending funds to a dedicated party based on proposal output.",
+  },
+  {
+    id: 3,
+    question: "Support different-different gated models",
+    answer: "User can add whitelist addresses for voting.",
   },
 ];
 
@@ -74,31 +79,31 @@ export const FAQ = () => {
             ))}
           </dl>
         </div>
-      <div className="mt-4">
-        <h2 className="my-8 block text-3xl font-bold tracking-tight">
-          Upcoming Features 🚀
-        </h2>
-        <div className="mb-2 mt-8">
-          <dl className="divide-y divide-gray-200">
-            {planned_features.map(({ question, answer, id }) => (
-              <div
-                className="pb-8 pt-6 md:grid md:grid-cols-12 md:gap-8"
-                key={id}
-              >
-                <Text
-                  className="text-base font-medium md:col-span-5"
-                  color="crimson"
+        <div className="mt-4">
+          <h2 className="my-8 block text-3xl font-bold tracking-tight">
+            Upcoming Features 🚀
+          </h2>
+          <div className="mb-2 mt-8">
+            <dl className="divide-y divide-gray-200">
+              {planned_features.map(({ question, answer, id }) => (
+                <div
+                  className="pb-8 pt-6 md:grid md:grid-cols-12 md:gap-8"
+                  key={id}
                 >
-                  {question}
-                </Text>
-                <dd className="mt-2 md:col-span-7 md:mt-0">
-                  <Text className="text-base">{answer}</Text>
-                </dd>
-              </div>
-            ))}
-          </dl>
+                  <Text
+                    className="text-base font-medium md:col-span-5"
+                    color="crimson"
+                  >
+                    {question}
+                  </Text>
+                  <dd className="mt-2 md:col-span-7 md:mt-0">
+                    <Text className="text-base">{answer}</Text>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
