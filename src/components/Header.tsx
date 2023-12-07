@@ -8,6 +8,8 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 const GITHUB_CONTRACTS_URL =
   "https://github.com/satyambnsal/cairo-smart-contracts/blob/5c4e3a1883b0b61000c6a9e239ed588e3b204146/src/starkvoice.cairo";
 
+const FEEDBACK_FORM_URL = "https://forms.gle/7FBvga7qCtP6iCKr8";
+
 export const Header = () => {
   const { chain } = useNetwork();
   console.log(chain);
@@ -20,6 +22,9 @@ export const Header = () => {
         <Link href="/dashboard">Dashboard</Link>
         <Link href={GITHUB_CONTRACTS_URL} target="_blank">
           <GitHubLogoIcon />
+        </Link>
+        <Link href={FEEDBACK_FORM_URL} target="_blank">
+          Feedback
         </Link>
       </Box>
       <Box
