@@ -10,7 +10,7 @@ import { CONTRACT_DETAILS } from "@/contract-config";
 import LoyaltyTokenAbi from "@/abis/LoyaltyToken.json";
 import { useMemo, useState } from "react";
 import { DividerHorizontalIcon } from "@radix-ui/react-icons";
-console.log("token address", CONTRACT_DETAILS.goerli.LoyaltyToken.address);
+console.log("token address", CONTRACT_DETAILS.sepolia.BlobToken.address);
 import { cairo } from "starknet";
 export const LoyaltyToken = () => {
   const { address } = useAccount();
@@ -20,13 +20,13 @@ export const LoyaltyToken = () => {
     error,
     data: balanceData,
   } = useBalance({
-    token: CONTRACT_DETAILS.goerli.LoyaltyToken.address,
+    token: CONTRACT_DETAILS.sepolia.BlobToken.address,
     address,
     watch: true,
   });
   const { contract } = useContract({
     abi: LoyaltyTokenAbi,
-    address: CONTRACT_DETAILS.goerli.LoyaltyToken.address,
+    address: CONTRACT_DETAILS.sepolia.BlobToken.address,
   });
   const [receiverAddress, setReceiverAddress] = useState("");
 

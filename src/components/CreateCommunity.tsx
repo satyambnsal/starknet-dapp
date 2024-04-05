@@ -54,7 +54,7 @@ export const CreateCommunity = () => {
       const a: any =
         window.starknet?.account ?? window.starknet_braavos?.account;
       const deployResponse = await a.deploy({
-        classHash: CONTRACT_DETAILS.goerli.StarkVoice.classhash,
+        classHash: CONTRACT_DETAILS.sepolia.StarkVoice.classhash,
         constructorCalldata: constructorData,
       });
 

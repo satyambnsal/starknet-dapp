@@ -63,3 +63,8 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 
 
+
+
+BlobToken address: 0x00f92c2abb9c08628f9c35573addb6e808dec5f0efe20f5e60dcc8889c977dca
+
+

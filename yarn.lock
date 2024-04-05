@@ -2347,17 +2347,17 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
   integrity sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==
 
-"@starknet-react/chains@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@starknet-react/chains/-/chains-0.1.0.tgz#3728f0c5d391b8ce34526a47c975d0b648ff7ca9"
-  integrity sha512-tzhLuNbFLWUGKYDZC2mbWuyO/bohQW1Q9D7Q0dCDDvowXgG1/Z0WykVusuCl0Pe4iVVrjqkiFKJRR717FzsPUQ==
+"@starknet-react/chains@^0.1.7", "@starknet-react/chains@latest":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@starknet-react/chains/-/chains-0.1.7.tgz#58503379e2ffabe33b4f6e0f2aef775e84745a4d"
+  integrity sha512-UNh97I1SvuJKaAhKOmpEk8JcWuZWMlPG/ba2HcvFYL9x/47BKndJ+Da9V+iJFtkHUjreVnajT1snsaz1XMG+UQ==
 
-"@starknet-react/core@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@starknet-react/core/-/core-2.1.0.tgz#641899535e141bef20d26a7f43d94ac6050d36c0"
-  integrity sha512-NeTu9Ih2ZwBVw4GGegy5NG6YgzAFqsp5z2KYOwrGW8IwbQ8TuS+Tmt11dgKVrTHTiDjvVV5ndc5SwOf0udKW8A==
+"@starknet-react/core@latest":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@starknet-react/core/-/core-2.6.0.tgz#e3dc788314ef41c6fb09451f1bc604e712c59dc7"
+  integrity sha512-T45TTOD624UDUtnkKjLOTY+TEFir/m9FP1BT+x7DazV4fNJFcRxJCbBWCe8ijWUHeNM3PfZvdN2lI7xp3SSyzg==
   dependencies:
-    "@starknet-react/chains" "^0.1.0"
+    "@starknet-react/chains" "^0.1.7"
     "@tanstack/react-query" "^5.0.1"
     eventemitter3 "^5.0.1"
     immutable "^4.3.4"
@@ -6587,7 +6587,7 @@ get-port@^5.1.1:
   resolved "https://registry.yarnpkg.com/get-port/-/get-port-5.1.1.tgz#0469ed07563479de6efb986baf053dcd7d4e3193"
   integrity sha512-g/Q1aTSDOxFpchXC4i8ZWvxA1lnPqx/JHqcpIw0/LX9T8x/GBbi6YnlN5nhaKIFkT8oFsscUKgDJYxfwfS6QsQ==
 
-get-starknet-core@^3.0.1, get-starknet-core@^3.1.0, get-starknet-core@^3.2.0:
+get-starknet-core@^3.0.1, get-starknet-core@^3.1.0, get-starknet-core@latest:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/get-starknet-core/-/get-starknet-core-3.2.0.tgz#44cabcbd573262340d575cb6b9a38e469a8029ed"
   integrity sha512-SZhxtLlKoPKLZ2H3l9WIU7CiNmkL3qLWGksALmvZdAXa/9PykYfLtvIB5B8A2UZMpf2ojTZlWLfuo1KhgmVobA==
@@ -9860,11 +9860,6 @@ slash@^3.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
 
-sonner@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/sonner/-/sonner-1.2.4.tgz#c13b079a79fabef72135537aeb0164ad0671d044"
-  integrity sha512-WGLP2QQnomgewaCTsK7YWiLcy5n1Yj83vsL5cP4zHMmpSkmFsCYTpQKhlXJrPE5kzjwbqCkCFXcOpbKc4vaUaA==
-
 source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
@@ -9958,7 +9953,7 @@ stacktrace-js@^2.0.2:
     stack-generator "^2.0.5"
     stacktrace-gps "^3.0.4"
 
-starknet@^5.24.3:
+starknet@latest:
   version "5.24.3"
   resolved "https://registry.yarnpkg.com/starknet/-/starknet-5.24.3.tgz#1d8a84047783ea122a6cf4f2dac59bfa6d628154"
   integrity sha512-v0TuaNc9iNtHdbIRzX372jfQH1vgx2rwBHQDMqK4DqjJbwFEE5dog8Go6rGiZVW750NqRSWrZ7ahqyRNc3bscg==

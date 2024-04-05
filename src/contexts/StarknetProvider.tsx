@@ -1,15 +1,14 @@
 "use client";
 import React from "react";
 
-import { goerli, mainnet } from "@starknet-react/chains";
+import { sepolia, mainnet } from "@starknet-react/chains";
 import {
   StarknetConfig,
   publicProvider,
   argent,
   braavos,
   useInjectedConnectors,
-  alchemyProvider,
-  lavalProvider,
+  voyager,
 } from "@starknet-react/core";
 
 console.log("api key", process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY);
@@ -31,9 +30,10 @@ export const StarknetProvider = ({
 
   return (
     <StarknetConfig
-      chains={[mainnet, goerli]}
+      chains={[mainnet, sepolia]}
       provider={publicProvider()}
       connectors={connectors}
+      explorer={voyager}
     >
       {children}
     </StarknetConfig>
