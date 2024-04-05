@@ -1,22 +1,30 @@
 "use client";
 import React from "react";
 
-import { sepolia, mainnet } from "@starknet-react/chains";
+import { sepolia, mainnet, Chain } from "@starknet-react/chains";
 import {
   StarknetConfig,
-  publicProvider,
   argent,
   braavos,
+  jsonRpcProvider,
   useInjectedConnectors,
   voyager,
 } from "@starknet-react/core";
-
-console.log("api key", process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY);
-// const apiKey = process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY;
-
 // // const provider = alchemyProvider({});
 
-// console.log("provider", provider);
+import { RpcProvider } from "starknet";
+// console.log("public provider", publicProvider());
+
+function rpc(chain: Chain) {
+  return {
+    nodeUrl: `https://starknet-${chain.network}.public.blastapi.io/rpc/v0_7`,
+  };
+}
+
+const provider = jsonRpcProvider({ rpc });
+
+console.log("provider", provider);
+
 export const StarknetProvider = ({
   children,
 }: {
@@ -31,7 +39,7 @@ export const StarknetProvider = ({
   return (
     <StarknetConfig
       chains={[mainnet, sepolia]}
-      provider={publicProvider()}
+      provider={provider}
       connectors={connectors}
       explorer={voyager}
     >

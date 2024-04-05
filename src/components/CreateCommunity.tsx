@@ -50,13 +50,22 @@ export const CreateCommunity = () => {
       });
 
       // console.log({ starkVoiceCalldata });
-      // console.log("constructor calldata", constructorData);
+      console.log("constructor calldata", constructorData);
+      console.log(
+        "starkvoice class hash",
+        CONTRACT_DETAILS.sepolia.StarkVoice.classhash
+      );
       const a: any =
         window.starknet?.account ?? window.starknet_braavos?.account;
-      const deployResponse = await a.deploy({
-        classHash: CONTRACT_DETAILS.sepolia.StarkVoice.classhash,
-        constructorCalldata: constructorData,
-      });
+      let deployResponse;
+      try {
+        deployResponse = await a.deployContract({
+          classHash: CONTRACT_DETAILS.sepolia.StarkVoice.classhash,
+          constructorCalldata: constructorData,
+        });
+      } catch (err) {
+        console.log(err);
+      }
 
       if (
         deployResponse?.transaction_hash &&
@@ -148,7 +157,7 @@ export const CreateCommunity = () => {
             />
             <Text size="1">
               Sample ERC20:
-              0x6f735bd63191f3418f3ca50cd579f536ebed7f5b13c0f94d8d137f78f4b73a6
+              0x00f92c2abb9c08628f9c35573addb6e808dec5f0efe20f5e60dcc8889c977dca
             </Text>
             <Text size="1" className="block">
               Make sure you have these ERC20 tokens. Otherwise Deployment will
