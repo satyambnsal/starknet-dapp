@@ -8,8 +8,6 @@ import {
   argent,
   braavos,
   useInjectedConnectors,
-  alchemyProvider,
-  lavalProvider,
 } from "@starknet-react/core";
 
 console.log("api key", process.env.NEXT_PUBLIC_ALCHEMY_GOERLI_API_KEY);
